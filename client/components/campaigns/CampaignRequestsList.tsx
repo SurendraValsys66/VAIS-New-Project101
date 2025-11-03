@@ -518,7 +518,7 @@ export default function CampaignRequestsList() {
                         size="sm"
                         onClick={() => {
                           if (campaign.status === "Completed") {
-                            window.location.href = `/campaign-overview/${campaign.id}`;
+                            navigate(`/campaign-overview/${campaign.id}`);
                           }
                         }}
                         disabled={campaign.status !== "Completed"}
