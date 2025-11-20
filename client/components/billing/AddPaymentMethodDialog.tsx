@@ -582,8 +582,7 @@ export function AddPaymentMethodDialog({
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">1</span>
+                <label className="block text-sm font-bold text-gray-900 mb-2">
                   PayPal Email Address
                 </label>
                 <Input
