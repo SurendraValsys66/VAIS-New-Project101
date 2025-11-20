@@ -59,19 +59,6 @@ interface PaymentRow {
   serviceProvider: string;
 }
 
-interface PaymentMethod {
-  id: string;
-  type: "credit_card" | "debit_card" | "paypal" | "bank_transfer";
-  cardNetwork?: string;
-  cardNumber: string;
-  expiryDate: string;
-  cardholderName: string;
-  isDefault: boolean;
-  lastUsed: string;
-  status: "active" | "expired" | "inactive";
-  autopayEnabled: boolean;
-}
-
 const COUNTRIES = [
   "United States",
   "Canada",
