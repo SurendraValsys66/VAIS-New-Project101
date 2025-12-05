@@ -496,18 +496,27 @@ export default function BuildVAISForm() {
           <p className="text-sm text-valasys-gray-600 leading-relaxed">{topic.description}</p>
         </div>
 
-        <div className="space-y-3">
-          <div className="py-2 px-3 bg-valasys-gray-50 rounded">
-            <span className="text-xs font-semibold text-valasys-gray-600 uppercase tracking-wide">Score</span>
-            <p className="text-sm font-semibold text-valasys-gray-900 mt-1">{topic.conversion}</p>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between py-2 px-3 bg-valasys-gray-50 rounded">
+            <span className="text-sm font-medium text-valasys-gray-700 flex items-center">
+              <Target className="w-4 h-4 mr-2 text-valasys-orange" />
+              Score
+            </span>
+            <span className="text-sm font-semibold text-valasys-gray-900">{topic.conversion}</span>
           </div>
-          <div className="py-2 px-3 bg-valasys-gray-50 rounded">
-            <span className="text-xs font-semibold text-valasys-gray-600 uppercase tracking-wide">Topic Category</span>
-            <p className="text-sm font-semibold text-valasys-gray-900 mt-1">{dummyCategory}</p>
+          <div className="flex items-center justify-between py-2 px-3 bg-valasys-gray-50 rounded">
+            <span className="text-sm font-medium text-valasys-gray-700 flex items-center">
+              <Tag className="w-4 h-4 mr-2 text-valasys-orange" />
+              Topic Category
+            </span>
+            <span className="text-sm font-semibold text-valasys-gray-900">{dummyCategory}</span>
           </div>
-          <div className="py-2 px-3 bg-valasys-gray-50 rounded">
-            <span className="text-xs font-semibold text-valasys-gray-600 uppercase tracking-wide">Topic Theme</span>
-            <p className="text-sm font-semibold text-valasys-gray-900 mt-1">{dummyTheme}</p>
+          <div className="flex items-center justify-between py-2 px-3 bg-valasys-gray-50 rounded">
+            <span className="text-sm font-medium text-valasys-gray-700 flex items-center">
+              <Layers className="w-4 h-4 mr-2 text-valasys-orange" />
+              Topic Theme
+            </span>
+            <span className="text-sm font-semibold text-valasys-gray-900">{dummyTheme}</span>
           </div>
         </div>
       </div>
