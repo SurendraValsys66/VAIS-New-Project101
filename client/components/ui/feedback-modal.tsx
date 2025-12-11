@@ -6,6 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Bold, Italic, Strikethrough, Link, List, ListOrdered, Code } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface FeedbackModalProps {
   open: boolean;
