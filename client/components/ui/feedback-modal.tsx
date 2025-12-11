@@ -133,7 +133,7 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
             </p>
 
             {/* GIF Rating */}
-            <div className="flex justify-center items-center gap-4 py-4">
+            <div className="flex justify-center items-center gap-3 py-4">
               {ratingEmojis.map((item) => (
                 <button
                   key={item.value}
@@ -141,11 +141,11 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
                   onMouseEnter={() => setHoveredRating(item.value)}
                   onMouseLeave={() => setHoveredRating(null)}
                   className={cn(
-                    "transition-all duration-200 transform relative",
+                    "transition-all duration-200 transform relative flex items-center justify-center",
                     rating === item.value
-                      ? "scale-150"
-                      : "scale-100 hover:scale-120",
-                    rating === item.value && "p-2 bg-valasys-orange rounded-full"
+                      ? "scale-125"
+                      : "scale-100 hover:scale-110",
+                    rating === item.value && "p-1.5 bg-valasys-orange rounded-full"
                   )}
                   title={item.label}
                   type="button"
@@ -154,17 +154,17 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
                     ref={(el) => {
                       if (el) gifRefs.current[item.value] = el;
                     }}
-                    src={item.gif}
+                    src={hoveredRating === item.value || rating === item.value ? item.gif : PAUSED_GIF_STATE[item.value]}
                     alt={item.label}
                     className={cn(
-                      "w-16 h-16 rounded-full object-cover transition-all duration-200",
+                      "w-8 h-8 rounded-full object-cover transition-all duration-200",
                       rating === item.value || hoveredRating === item.value
                         ? "opacity-100 drop-shadow-lg"
-                        : "opacity-60 hover:opacity-80"
+                        : "opacity-70"
                     )}
                   />
                   {(rating === item.value || hoveredRating === item.value) && (
-                    <div className="absolute inset-0 rounded-full ring-2 ring-valasys-orange pointer-events-none" />
+                    <div className="absolute inset-0 rounded-full ring-2 ring-offset-1 ring-valasys-orange pointer-events-none" />
                   )}
                 </button>
               ))}
