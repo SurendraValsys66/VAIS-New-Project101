@@ -194,7 +194,12 @@ export interface HeaderBlock {
   logo: string;
   backgroundColor: string;
   padding: number;
+  margin: number;
+  borderWidth: number;
+  borderColor: string;
+  borderRadius: number;
   alignment: "left" | "center" | "right";
+  visibility: "all" | "desktop" | "mobile";
 }
 
 export interface FooterBlock {
