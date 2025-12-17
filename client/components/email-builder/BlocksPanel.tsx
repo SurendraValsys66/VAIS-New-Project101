@@ -18,6 +18,7 @@ import {
   Menu,
   Film,
   GripHorizontal,
+  ChevronDown,
 } from "lucide-react";
 import {
   createTitleBlock,
