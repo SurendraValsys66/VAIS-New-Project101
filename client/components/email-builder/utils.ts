@@ -16,6 +16,8 @@ import {
   HeaderBlock,
   FooterBlock,
   SpacerBlock,
+  CenteredImageCardBlock,
+  SplitImageCardBlock,
 } from "./types";
 
 export function generateId(): string {
@@ -296,6 +298,54 @@ export function createSpacerBlock(height = 20): SpacerBlock {
   };
 }
 
+export function createCenteredImageCardBlock(): CenteredImageCardBlock {
+  return {
+    type: "centeredImageCard",
+    id: generateId(),
+    image:
+      "https://images.unsplash.com/photo-1470114716159-e389f8712fda?w=600&h=300&fit=crop",
+    imageAlt: "Card image",
+    title: "Some title here",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    buttonText: "Call to action",
+    buttonLink: "#",
+    buttonLinkType: "url",
+    backgroundColor: "#ffffff",
+    borderColor: "#e0e0e0",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 20,
+    margin: 16,
+    visibility: "all",
+  };
+}
+
+export function createSplitImageCardBlock(): SplitImageCardBlock {
+  return {
+    type: "splitImageCard",
+    id: generateId(),
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=300&fit=crop",
+    imageAlt: "Card image",
+    label: "New",
+    title: "Some title here",
+    description:
+      "From 25€\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    buttonText: "Call to action",
+    buttonLink: "#",
+    buttonLinkType: "url",
+    imagePosition: "left",
+    backgroundColor: "#ffffff",
+    borderColor: "#e0e0e0",
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 20,
+    margin: 16,
+    visibility: "all",
+  };
+}
+
 export function createEmptyTemplate(): EmailTemplate {
   return {
     id: generateId(),
@@ -399,6 +449,49 @@ export function renderBlockToHTML(block: ContentBlock): string {
       return `<footer style="background-color: ${block.backgroundColor}; color: ${block.textColor}; font-size: ${block.fontSize}px; padding: ${block.padding}px; text-align: center;">${block.content}</footer>`;
     case "spacer":
       return `<div style="height: ${block.height}px; background-color: ${block.backgroundColor};"></div>`;
+    case "centeredImageCard": {
+      const cardBlock = block as CenteredImageCardBlock;
+      const borderStyle =
+        cardBlock.borderWidth > 0
+          ? `border: ${cardBlock.borderWidth}px solid ${cardBlock.borderColor};`
+          : "";
+      return `<div style="background-color: ${cardBlock.backgroundColor}; border-radius: ${cardBlock.borderRadius}px; ${borderStyle} padding: ${cardBlock.padding}px; margin: ${cardBlock.margin}px; max-width: 500px; margin-left: auto; margin-right: auto;">
+        <img src="${cardBlock.image}" alt="${cardBlock.imageAlt}" style="width: 100%; height: auto; display: block; border-radius: ${cardBlock.borderRadius}px ${cardBlock.borderRadius}px 0 0;" />
+        <div style="text-align: center; padding: 20px;">
+          <h2 style="margin: 0 0 12px 0; font-size: 24px; font-weight: bold; color: #000;">${cardBlock.title}</h2>
+          <p style="margin: 0 0 16px 0; font-size: 14px; color: #666; line-height: 1.5;">${cardBlock.description}</p>
+          <a href="${cardBlock.buttonLink}" style="display: inline-block; background-color: #FF6A00; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">${cardBlock.buttonText}</a>
+        </div>
+      </div>`;
+    }
+    case "splitImageCard": {
+      const splitBlock = block as SplitImageCardBlock;
+      const borderStyle =
+        splitBlock.borderWidth > 0
+          ? `border: ${splitBlock.borderWidth}px solid ${splitBlock.borderColor};`
+          : "";
+      const imageSide = splitBlock.imagePosition === "left" ? "45%" : "55%";
+      const contentSide = splitBlock.imagePosition === "left" ? "55%" : "45%";
+      const direction = splitBlock.imagePosition === "left" ? "ltr" : "rtl";
+      const label = splitBlock.label
+        ? `<span style="display: inline-block; background-color: #FF6A00; color: #ffffff; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-bottom: 8px;">${splitBlock.label}</span>`
+        : "";
+      return `<div style="background-color: ${splitBlock.backgroundColor}; border-radius: ${splitBlock.borderRadius}px; ${borderStyle} margin: ${splitBlock.margin}px; max-width: 600px; margin-left: auto; margin-right: auto; overflow: hidden;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="${imageSide}" style="vertical-align: middle; padding: 20px; text-align: center;">
+              <img src="${splitBlock.image}" alt="${splitBlock.imageAlt}" style="width: 100%; height: auto; display: block; border-radius: 4px;" />
+            </td>
+            <td width="${contentSide}" style="vertical-align: top; padding: 20px;">
+              ${label}
+              <h2 style="margin: 0 0 12px 0; font-size: 20px; font-weight: bold; color: #000;">${splitBlock.title}</h2>
+              <p style="margin: 0 0 16px 0; font-size: 14px; color: #666; line-height: 1.5; white-space: pre-line;">${splitBlock.description}</p>
+              <a href="${splitBlock.buttonLink}" style="display: inline-block; background-color: #FF6A00; color: #ffffff; padding: 10px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">${splitBlock.buttonText}</a>
+            </td>
+          </tr>
+        </table>
+      </div>`;
+    }
     default:
       return "";
   }
