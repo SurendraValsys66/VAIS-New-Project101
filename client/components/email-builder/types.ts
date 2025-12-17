@@ -194,6 +194,9 @@ export interface ButtonBlock {
   id: string;
   text: string;
   link: string;
+  linkType?: "url" | "page" | "email";
+  linkTarget?: string;
+  linkTooltip?: string;
   backgroundColor: string;
   textColor: string;
   padding: number;
