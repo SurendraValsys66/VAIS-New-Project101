@@ -23,8 +23,10 @@ interface BlockRendererProps {
   block: ContentBlock;
   isSelected: boolean;
   isEditing?: boolean;
+  selectedFooterElement?: string | null;
   onBlockUpdate: (block: ContentBlock) => void;
   onBlockSelect?: (blockId: string) => void;
+  onFooterElementSelect?: (element: string | null) => void;
 }
 
 export const BlockRenderer: React.FC<BlockRendererProps> = ({
