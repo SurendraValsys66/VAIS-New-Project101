@@ -176,12 +176,14 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({
           <FooterWithSocialBlockComponent
             block={block as any}
             isSelected={isSelected}
+            selectedElement={selectedFooterElement}
             onContentChange={(field, value) =>
               onBlockUpdate({ ...block, [field]: value })
             }
             onSocialUpdate={(social) =>
               onBlockUpdate({ ...block, social })
             }
+            onElementSelect={onFooterElementSelect}
           />
         </div>
       );
