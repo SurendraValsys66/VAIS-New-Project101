@@ -13,8 +13,7 @@ interface FooterWithSocialBlockComponentProps {
 
 export const FooterWithSocialBlockComponent: React.FC<
   FooterWithSocialBlockComponentProps
-> = ({ block, isSelected, onContentChange, onSocialUpdate }) => {
-  const [editingField, setEditingField] = useState<string | null>(null);
+> = ({ block, isSelected, selectedElement, onContentChange, onSocialUpdate, onElementSelect }) => {
 
   const handleFieldChange = (field: keyof typeof block, subField: string, value: string) => {
     const updatedField = { ...block[field], [subField]: value };
