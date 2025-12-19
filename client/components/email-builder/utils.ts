@@ -87,6 +87,7 @@ export function createImageBlock(src = ""): ImageBlock {
     width: 600,
     height: 260,
     widthUnit: "px",
+    heightUnit: "px",
     alignment: "center",
     padding: 0,
     margin: 0,
